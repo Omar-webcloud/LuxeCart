@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LUXECart - Glass Ecommerce Landing Page</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Inter", "Segoe UI", sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      width: 100%;
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: #f5f2ea;
+
+      background:
+        radial-gradient(circle at 20% 20%, #f5f2ea 0%, transparent 28%),
+        radial-gradient(circle at 80% 30%, #8a8a8a 0%, transparent 35%),
+        radial-gradient(circle at 50% 80%, #2b2b2b 0%, transparent 42%),
+        radial-gradient(circle at 70% 70%, #d8d3c7 0%, transparent 30%),
+        radial-gradient(circle at 30% 75%, #111111 0%, transparent 38%),
+        #000000;
+
+      background-size: 220% 220%;
+      animation: meshMove 12s ease infinite;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+
+      background:
+        radial-gradient(circle at 30% 40%, rgba(245, 242, 234, 0.18), transparent 32%),
+        radial-gradient(circle at 70% 60%, rgba(128, 128, 128, 0.14), transparent 28%),
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.08), transparent 35%);
+
+      mix-blend-mode: screen;
+      animation: floatLayer 10s ease-in-out infinite alternate;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      min-height: 100vh;
+      padding: 30px 7%;
+    }
+
+    .glass {
+      background: rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Navbar */
+    .navbar {
+      width: 100%;
+      padding: 18px 24px;
+      border-radius: 24px;
+
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      position: sticky;
+      top: 24px;
+      z-index: 20;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: #ffffff;
+    }
+
+    .logo span {
+      color: #d8d3c7;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 0.95rem;
+      transition: 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #ffffff;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-cart,
+    .nav-login {
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .cart-close {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 1.4rem;
+        cursor: pointer;
+        line-height: 1;
+      }
+
+    .nav-cart:hover,
+    .nav-login:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .menu-btn {
+      display: none;
+      padding: 11px 15px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: calc(100vh - 120px);
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 45px;
+      padding: 70px 0 80px;
+    }
+
+    .hero-content {
+      padding: 48px;
+      border-radius: 34px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 10px 16px;
+      margin-bottom: 22px;
+      border-radius: 999px;
+
+      background: rgba(255, 255, 255, 0.13);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+
+      font-size: 0.85rem;
+      color: #f5f2ea;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 7vw, 6.4rem);
+      line-height: 0.95;
+      letter-spacing: -4px;
+      margin-bottom: 24px;
+      color: #ffffff;
+    }
+
+    .hero-title span {
+      color: #d8d3c7;
+      font-style: italic;
+      font-weight: 500;
+    }
+
+    .hero-text {
+      max-width: 590px;
+      font-size: 1.08rem;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 34px;
+    }
+
+    .cta-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 15px 26px;
+      border-radius: 999px;
+      border: none;
+      outline: none;
+      cursor: pointer;
+
+      font-size: 0.98rem;
+      font-weight: 700;
+      transition: 0.35s ease;
+    }
+
+    .btn-primary {
+      background: #f5f2ea;
+      color: #111111;
+      box-shadow: 0 18px 40px rgba(245, 242, 234, 0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 22px 50px rgba(245, 242, 234, 0.38);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(14px);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-4px);
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    .stats {
+      margin-top: 40px;
+      display: flex;
+      gap: 34px;
+      flex-wrap: wrap;
+    }
+
+    .stat h3 {
+      font-size: 1.6rem;
+      color: #ffffff;
+    }
+
+    .stat p {
+      margin-top: 5px;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    /* Hero Visual */
+    .hero-visual {
+      position: relative;
+      height: 620px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .product-orb {
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+
+      background:
+        radial-gradient(circle at 35% 25%, #ffffff, #d8d3c7 35%, #757575 70%, #111111 100%);
+
+      box-shadow:
+        0 0 35px rgba(245, 242, 234, 0.55),
+        0 0 120px rgba(255, 255, 255, 0.18),
+        inset -35px -35px 70px rgba(0, 0, 0, 0.35);
+
+      animation: bounceGlow 3s ease-in-out infinite;
+    }
+
+    .glass-card {
+      position: absolute;
+      padding: 22px;
+      border-radius: 26px;
+
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .price-card {
+      top: 70px;
+      right: 35px;
+      width: 190px;
+      animation: floatSmall 4s ease-in-out infinite;
+    }
+
+    .sale-card {
+      left: 25px;
+      bottom: 115px;
+      width: 220px;
+      animation: floatSmall 5s ease-in-out infinite reverse;
+    }
+
+    .delivery-card {
+      right: 20px;
+      bottom: 70px;
+      width: 210px;
+      animation: floatSmall 4.8s ease-in-out infinite;
+    }
+
+    .glass-card small {
+      color: rgba(255, 255, 255, 0.78);
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .glass-card h3 {
+      font-size: 1.3rem;
+      color: #ffffff;
+    }
+
+    .glass-card p {
+      margin-top: 8px;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .rating {
+      margin-top: 10px;
+      color: #f5f2ea;
+      font-size: 0.95rem;
+    }
+
+    /* Sections */
+    .section {
+      padding: 70px 0;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 30px;
+      margin-bottom: 32px;
+    }
+
+    .section-kicker {
+      display: inline-block;
+      margin-bottom: 12px;
+      color: rgba(245, 242, 234, 0.9);
+      font-size: 0.9rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      font-size: clamp(2.1rem, 4vw, 4.2rem);
+      line-height: 1;
+      letter-spacing: -2px;
+      color: #ffffff;
+    }
+
+    .section-desc {
+      max-width: 470px;
+      color: rgba(255, 255, 255, 0.82);
+      line-height: 1.7;
+    }
+
+    /* Categories */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .category-card {
+      min-height: 220px;
+      padding: 24px;
+      border-radius: 28px;
+      position: relative;
+      overflow: hidden;
+      transition: 0.35s ease;
+    }
+
+    .category-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .category-icon {
+      width: 74px;
+      height: 74px;
+      border-radius: 50%;
+      margin-bottom: 35px;
+
+      background:
+        radial-gradient(circle at 35% 25%, #ffffff, #d8d3c7 40%, #5f5f5f 100%);
+
+      box-shadow: 0 15px 35px rgba(245, 242, 234, 0.18);
+    }
+
+    .category-card h3 {
+      font-size: 1.35rem;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    .category-card p {
+      color: rgba(255, 255, 255, 0.78);
+      line-height: 1.6;
+      font-size: 0.92rem;
+    }
+
+    /* Products */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .product-card {
+      border-radius: 30px;
+      overflow: hidden;
+      transition: 0.35s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .product-image {
+      height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background:
+        radial-gradient(circle at 40% 30%, rgba(255,255,255,0.35), transparent 35%),
+        linear-gradient(135deg, rgba(255,255,255,0.16), rgba(255,255,255,0.03));
+    }
+
+    .product-shape {
+      width: 145px;
+      height: 145px;
+      border-radius: 34px;
+      transform: rotate(14deg);
+
+      background:
+        linear-gradient(145deg, #f5f2ea, #888888, #151515);
+
+      box-shadow:
+        0 30px 70px rgba(0, 0, 0, 0.35),
+        inset -18px -18px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    .shape-round {
+      border-radius: 50%;
+    }
+
+    .shape-bag {
+      border-radius: 44% 44% 28% 28%;
+    }
+
+    .shape-watch {
+      width: 125px;
+      height: 165px;
+      border-radius: 60px;
+    }
+
+    .product-info {
+      padding: 22px;
+    }
+
+    .product-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .product-info h3 {
+      color: #ffffff;
+      font-size: 1.15rem;
+    }
+
+    .product-info span {
+      color: #f5f2ea;
+      font-weight: 700;
+    }
+
+    .product-info p {
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .add-btn {
+      width: 100%;
+      padding: 13px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .add-btn:hover {
+      color: #111111;
+      background: #f5f2ea;
+    }
+
+    /* Promo */
+    .promo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .promo-card {
+      border-radius: 34px;
+      padding: 42px;
+      min-height: 360px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .promo-card::after {
+      content: "";
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      right: -60px;
+      bottom: -60px;
+
+      background:
+        radial-gradient(circle at 35% 25%, rgba(255,255,255,0.8), rgba(216,211,199,0.45), rgba(0,0,0,0.25));
+
+      filter: blur(2px);
+      opacity: 0.75;
+    }
+
+    .promo-card h2 {
+      font-size: clamp(2rem, 4vw, 4.5rem);
+      line-height: 1;
+      letter-spacing: -2px;
+      color: #ffffff;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .promo-card p {
+      max-width: 440px;
+      color: rgba(255, 255, 255, 0.82);
+      line-height: 1.7;
+      margin-bottom: 26px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .promo-card .btn {
+      position: relative;
+      z-index: 2;
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .feature-item {
+      padding: 24px;
+      border-radius: 26px;
+    }
+
+    .feature-item h3 {
+      color: #ffffff;
+      margin-bottom: 8px;
+      font-size: 1.2rem;
+    }
+
+    .feature-item p {
+      color: rgba(255, 255, 255, 0.80);
+      line-height: 1.6;
+      font-size: 0.94rem;
+    }
+
+    /* Testimonials */
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .testimonial-card {
+      padding: 28px;
+      border-radius: 30px;
+    }
+
+    .testimonial-card .stars {
+      color: #f5f2ea;
+      margin-bottom: 18px;
+      letter-spacing: 2px;
+    }
+
+    .testimonial-card p {
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.7;
+      margin-bottom: 22px;
+    }
+
+    .customer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #f5f2ea, #707070, #111111);
+    }
+
+    .customer h4 {
+      color: #ffffff;
+      font-size: 0.98rem;
+    }
+
+    .customer small {
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    /* Newsletter */
+    .newsletter {
+      padding: 52px;
+      border-radius: 34px;
+      text-align: center;
+    }
+
+    .newsletter h2 {
+      font-size: clamp(2.2rem, 5vw, 5rem);
+      line-height: 1;
+      letter-spacing: -3px;
+      color: #ffffff;
+      margin-bottom: 18px;
+    }
+
+    .newsletter p {
+      max-width: 620px;
+      margin: 0 auto 28px;
+      color: rgba(255, 255, 255, 0.82);
+      line-height: 1.7;
+    }
+
+    .newsletter-form {
+      max-width: 580px;
+      margin: 0 auto;
+      display: flex;
+      gap: 12px;
+      padding: 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.09);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: #ffffff;
+      padding: 0 18px;
+      font-size: 1rem;
+    }
+
+    .newsletter-form input::placeholder {
+      color: rgba(255, 255, 255, 0.62);
+    }
+
+    /* Footer */
+    .footer {
+      padding: 38px 0 20px;
+    }
+
+    .footer-content {
+      padding: 30px;
+      border-radius: 28px;
+
+      display: grid;
+      grid-template-columns: 1.4fr repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .footer p,
+    .footer a {
+      color: rgba(255, 255, 255, 0.78);
+      line-height: 1.8;
+      font-size: 0.92rem;
+    }
+
+    .footer h3,
+    .footer h4 {
+      color: #ffffff;
+      margin-bottom: 14px;
+    }
+
+    .footer ul {
+      list-style: none;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 22px;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 0.88rem;
+    }
+
+    /* Animations */
+    @keyframes meshMove {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    @keyframes floatLayer {
+      from {
+        transform: translateY(-25px) translateX(-15px) scale(1);
+      }
+
+      to {
+        transform: translateY(25px) translateX(15px) scale(1.08);
+      }
+    }
+
+    @keyframes bounceGlow {
+      0% {
+        transform: translateY(0) scale(1);
+      }
+
+      50% {
+        transform: translateY(-35px) scale(1.06);
+      }
+
+      100% {
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes floatSmall {
+      0% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-18px);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 1100px) {
+      .category-grid,
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 950px) {
+      .page {
+        padding: 20px;
+      }
+
+      .nav-links,
+      .nav-login {
+        display: none;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 42px;
+      }
+
+      .hero-content {
+        padding: 34px 26px;
+      }
+
+      .hero-title {
+        letter-spacing: -2px;
+      }
+
+      .hero-visual {
+        height: 500px;
+      }
+
+      .product-orb {
+        width: 260px;
+        height: 260px;
+      }
+
+      .price-card {
+        top: 30px;
+        right: 10px;
+      }
+
+      .sale-card {
+        left: 5px;
+        bottom: 85px;
+      }
+
+      .delivery-card {
+        right: 0;
+        bottom: 10px;
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .promo {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .navbar {
+        padding: 14px;
+        top: 14px;
+      }
+
+      .logo {
+        font-size: 1.15rem;
+      }
+
+      .nav-cart {
+        padding: 10px 14px;
+      }
+
+      .hero-title {
+        font-size: 3.1rem;
+      }
+
+      .cta-group {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .stats {
+        gap: 22px;
+      }
+
+      .hero-visual {
+        height: 520px;
+      }
+
+      .glass-card {
+        transform: scale(0.9);
+      }
+
+      .category-grid,
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .promo-card,
+      .newsletter {
+        padding: 30px 24px;
+      }
+
+      .newsletter-form {
+        flex-direction: column;
+        border-radius: 24px;
+      }
+
+      .newsletter-form input {
+        width: 100%;
+        padding: 14px 16px;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+      <a href="#" class="logo">LUXE<span>Cart</span></a>
+
+      <ul class="nav-links">
+        <li><a href="#new">New Arrivals</a></li>
+        <li><a href="#collections">Collections</a></li>
+        <li><a href="#best">Best Sellers</a></li>
+        <li><a href="#offers">Offers</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="nav-login">Login</button>
+        <button class="nav-cart">Cart 0</button>
+        <button class="menu-btn">☰</button>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+
+      <div class="hero-content glass">
+        <div class="tag">Premium Ecommerce Experience</div>
+
+        <h1 class="hero-title">
+          Discover Your Next <span>Iconic</span> Style
+        </h1>
+
+        <p class="hero-text">
+          Shop curated essentials, luxury-inspired accessories, and everyday statement pieces
+          designed for modern living. Minimal design, premium quality, and effortless checkout.
+        </p>
+
+        <div class="cta-group">
+          <a href="#new"><button class="btn btn-primary">Shop New Collection</button></a>
+          <a href="#best"><button class="btn btn-secondary">Explore Best Sellers</button></a>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <h3>25K+</h3>
+            <p>Happy Customers</p>
+          </div>
+
+          <div class="stat">
+            <h3>4.9</h3>
+            <p>Average Rating</p>
+          </div>
+
+          <div class="stat">
+            <h3>70%</h3>
+            <p>Seasonal Sale</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="product-orb"></div>
+
+        <div class="glass-card price-card">
+          <small>Featured Product</small>
+          <h3>Minimal Luxe Bag</h3>
+          <p>Elegant, durable, and crafted for daily essentials.</p>
+          <div class="rating">★★★★★ 4.9</div>
+        </div>
+
+        <div class="glass-card sale-card">
+          <small>Limited Offer</small>
+          <h3>Up to 70% Off</h3>
+          <p>Upgrade your wardrobe with exclusive premium deals today.</p>
+        </div>
+
+        <div class="glass-card delivery-card">
+          <small>Fast Delivery</small>
+          <h3>48h Shipping</h3>
+          <p>Premium packaging with quick doorstep delivery.</p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Collections -->
+    <section class="section" id="collections">
+      <div class="section-header">
+        <div>
+          <span class="section-kicker">Collections</span>
+          <h2 class="section-title">Shop by Category</h2>
+        </div>
+
+        <p class="section-desc">
+          Explore handpicked categories created for people who love clean design,
+          timeless colors, and premium everyday essentials.
+        </p>
+      </div>
+
+      <div class="category-grid">
+        <div class="category-card glass">
+          <div class="category-icon"></div>
+          <h3>Luxury Bags</h3>
+          <p>Minimal carry pieces with soft silhouettes and premium finishes.</p>
+        </div>
+
+        <div class="category-card glass">
+          <div class="category-icon"></div>
+          <h3>Smart Watches</h3>
+          <p>Modern wearables designed for productivity, fitness, and style.</p>
+        </div>
+
+        <div class="category-card glass">
+          <div class="category-icon"></div>
+          <h3>Accessories</h3>
+          <p>Everyday details that complete your outfit with a polished look.</p>
+        </div>
+
+        <div class="category-card glass">
+          <div class="category-icon"></div>
+          <h3>Home Essentials</h3>
+          <p>Neutral-toned lifestyle pieces for beautiful modern spaces.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products -->
+    <section class="section" id="new">
+      <div class="section-header">
+        <div>
+          <span class="section-kicker">New Arrivals</span>
+          <h2 class="section-title">Fresh Drops</h2>
+        </div>
+
+        <p class="section-desc">
+          Our latest collection brings together monochrome elegance, soft textures,
+          and effortless ecommerce-ready style.
+        </p>
+      </div>
+
+      <div class="product-grid">
+        <div class="product-card glass">
+          <div class="product-image">
+            <div class="product-shape shape-bag"></div>
+          </div>
+          <div class="product-info">
+            <div class="product-top">
+              <h3>Minimal Luxe Bag</h3>
+              <span>$89</span>
+            </div>
+            <p>Compact premium bag with clean finish and everyday storage.</p>
+            <button class="add-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="product-card glass">
+          <div class="product-image">
+            <div class="product-shape shape-watch"></div>
+          </div>
+          <div class="product-info">
+            <div class="product-top">
+              <h3>Mono Smart Watch</h3>
+              <span>$129</span>
+            </div>
+            <p>Elegant smart wearable with modern display and soft strap.</p>
+            <button class="add-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="product-card glass">
+          <div class="product-image">
+            <div class="product-shape shape-round"></div>
+          </div>
+          <div class="product-info">
+            <div class="product-top">
+              <h3>Cloud Speaker</h3>
+              <span>$74</span>
+            </div>
+            <p>Minimal Bluetooth speaker with rich audio and soft design.</p>
+            <button class="add-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="product-card glass">
+          <div class="product-image">
+            <div class="product-shape"></div>
+          </div>
+          <div class="product-info">
+            <div class="product-top">
+              <h3>Urban Wallet</h3>
+              <span>$45</span>
+            </div>
+            <p>Slim card wallet crafted for quick access and premium feel.</p>
+            <button class="add-btn">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Promo and Features -->
+    <section class="section" id="offers">
+      <div class="promo">
+        <div class="promo-card glass">
+          <span class="section-kicker">Limited Offer</span>
+          <h2>Upgrade Your Style for Less</h2>
+          <p>
+            Enjoy up to 70% off selected premium products. Discover modern bags,
+            accessories, tech essentials, and lifestyle pieces while stocks last.
+          </p>
+          <button class="btn btn-primary">Claim Offer</button>
+        </div>
+
+        <div class="feature-list">
+          <div class="feature-item glass">
+            <h3>Free Premium Shipping</h3>
+            <p>Get fast and secure delivery with elegant packaging on selected orders.</p>
+          </div>
+
+          <div class="feature-item glass">
+            <h3>Secure Checkout</h3>
+            <p>Enjoy a smooth checkout experience with trusted payment protection.</p>
+          </div>
+
+          <div class="feature-item glass">
+            <h3>Easy Returns</h3>
+            <p>Not the perfect fit? Return your product easily within the return window.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Best Sellers -->
+    <section class="section" id="best">
+      <div class="section-header">
+        <div>
+          <span class="section-kicker">Best Sellers</span>
+          <h2 class="section-title">Customer Favorites</h2>
+        </div>
+
+        <p class="section-desc">
+          Products loved by customers for their clean design, premium finish,
+          and excellent everyday usability.
+        </p>
+      </div>
+
+      <div class="product-grid">
+        <div class="product-card glass">
+          <div class="product-image">
+            <div class="product-shape shape-round"></div>
+          </div>
+          <div class="product-info">
+            <div class="product-top">
+              <h3>Soft Glow Lamp</h3>
+              <span>$59</span>
+            </div>
+            <p>Warm ambient lighting for minimal desks and modern bedrooms.</p>
+            <button class="add-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="product-card glass">
+          <div class="product-image">
+            <div class="product-shape"></div>
+          </div>
+          <div class="product-info">
+            <div class="product-top">
+              <h3>Neutral Organizer</h3>
+              <span>$39</span>
+            </div>
+            <p>Keep your daily tools clean, sorted, and beautifully arranged.</p>
+            <button class="add-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="product-card glass">
+          <div class="product-image">
+            <div class="product-shape shape-bag"></div>
+          </div>
+          <div class="product-info">
+            <div class="product-top">
+              <h3>Classic Tote</h3>
+              <span>$99</span>
+            </div>
+            <p>A spacious tote designed for work, travel, and daily errands.</p>
+            <button class="add-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="product-card glass">
+          <div class="product-image">
+            <div class="product-shape shape-watch"></div>
+          </div>
+          <div class="product-info">
+            <div class="product-top">
+              <h3>Elite Band</h3>
+              <span>$32</span>
+            </div>
+            <p>A clean accessory band with a premium monochrome look.</p>
+            <button class="add-btn">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <span class="section-kicker">Reviews</span>
+          <h2 class="section-title">Loved by Shoppers</h2>
+        </div>
+
+        <p class="section-desc">
+          Real feedback from customers who enjoy minimal design, quick shipping,
+          and premium product quality.
+        </p>
+      </div>
+
+      <div class="testimonial-grid">
+        <div class="testimonial-card glass">
+          <div class="stars">★★★★★</div>
+          <p>
+            “The design feels premium and the shopping experience is smooth.
+            Everything looks clean, modern, and high-end.”
+          </p>
+          <div class="customer">
+            <div class="avatar"></div>
+            <div>
+              <h4>Sarah Miller</h4>
+              <small>Verified Buyer</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card glass">
+          <div class="stars">★★★★★</div>
+          <p>
+            “I loved the minimal color palette. The product quality was better
+            than expected and delivery was quick.”
+          </p>
+          <div class="customer">
+            <div class="avatar"></div>
+            <div>
+              <h4>David Chen</h4>
+              <small>Verified Buyer</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card glass">
+          <div class="stars">★★★★★</div>
+          <p>
+            “The bags and accessories are stylish without being too loud.
+            Perfect for daily use and professional outfits.”
+          </p>
+          <div class="customer">
+            <div class="avatar"></div>
+            <div>
+              <h4>Amina Rahman</h4>
+              <small>Verified Buyer</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="section">
+      <div class="newsletter glass">
+        <span class="section-kicker">Join the Club</span>
+        <h2>Get Exclusive Drops</h2>
+        <p>
+          Subscribe to receive early access to new collections, private offers,
+          seasonal sales, and premium ecommerce updates.
+        </p>
+
+        <form class="newsletter-form">
+          <input type="email" placeholder="Enter your email address" />
+          <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content glass">
+        <div>
+          <h3 class="logo">LUXE<span>Cart</span></h3>
+          <p>
+            A premium ecommerce landing page concept with glassmorphism,
+            animated mesh gradients, and modern luxury-inspired styling.
+          </p>
+        </div>
+
+        <div>
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="#new">New Arrivals</a></li>
+            <li><a href="#collections">Collections</a></li>
+            <li><a href="#best">Best Sellers</a></li>
+            <li><a href="#offers">Offers</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#">Shipping</a></li>
+            <li><a href="#">Returns</a></li>
+            <li><a href="#">Order Tracking</a></li>
+            <li><a href="#">Help Center</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Social</h4>
+          <ul>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">Pinterest</a></li>
+            <li><a href="#">TikTok</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        © 2026 LUXECart. All rights reserved.
+      </div>
+    </footer>
+
+  </main>
+
+
+
+
+  <script>
+/* =========================
+   MOBILE MENU TOGGLE
+========================= */
+const menuBtn = document.querySelector(".menu-btn");
+const navLinks = document.querySelector(".nav-links");
+
+if (menuBtn) {
+  menuBtn.addEventListener("click", () => {
+    navLinks.classList.toggle("open");
+
+    // simple mobile style toggle
+    if (navLinks.style.display === "flex") {
+      navLinks.style.display = "none";
+    } else {
+      navLinks.style.display = "flex";
+      navLinks.style.flexDirection = "column";
+      navLinks.style.position = "absolute";
+      navLinks.style.top = "70px";
+      navLinks.style.right = "20px";
+      navLinks.style.background = "rgba(0,0,0,0.8)";
+      navLinks.style.padding = "15px";
+      navLinks.style.borderRadius = "12px";
+    }
+  });
+}
+
+
+/* =========================
+   CART SYSTEM
+========================= */
+let cart = [];
+
+const cartBtn = document.querySelector(".nav-cart");
+
+/* Create cart drawer dynamically */
+const cartDrawer = document.createElement("div");
+cartDrawer.style.position = "fixed";
+cartDrawer.style.right = "0";
+cartDrawer.style.top = "0";
+cartDrawer.style.width = "320px";
+cartDrawer.style.height = "100%";
+cartDrawer.style.background = "#111";
+cartDrawer.style.color = "#fff";
+cartDrawer.style.padding = "20px";
+cartDrawer.style.transform = "translateX(100%)";
+cartDrawer.style.transition = "0.3s";
+cartDrawer.style.zIndex = "999";
+
+cartDrawer.innerHTML = `
+    <button class="cart-close" style="background:none; border:none; color:white; cursor:pointer; font-size:20px; float:right;">&#10005;</button>
+    <h2>Cart</h2>
+    <div id="cartItems"></div>
+    <p style="margin-top:10px;">Total: <span id="cartTotal">$0</span></p>
+  `;
+
+document.body.appendChild(cartDrawer);
+
+/* Toggle cart */
+cartBtn.addEventListener("click", () => {
+  if (cartDrawer.style.transform === "translateX(0%)") {
+    cartDrawer.style.transform = "translateX(100%)";
+  } else {
+    cartDrawer.style.transform = "translateX(0%)";
+  }
+});
+
+/* Close button inside cart */
+const cartCloseBtn = cartDrawer.querySelector('.cart-close');
+if (cartCloseBtn) {
+  cartCloseBtn.addEventListener('click', () => {
+    cartDrawer.style.transform = "translateX(100%)";
+  });
+}
+
+
+/* =========================
+   UPDATE CART UI
+========================= */
+function updateCart() {
+  let total = 0;
+  let html = "";
+
+  cart.forEach(item => {
+    total += item.price;
+    html += `<div style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1)">
+              ${item.name} - $${item.price}
+            </div>`;
+  });
+
+  document.getElementById("cartItems").innerHTML = html;
+  document.getElementById("cartTotal").innerText = "$" + total;
+  cartBtn.innerText = `Cart ${cart.length}`;
+}
+
+
+/* =========================
+   ADD TO CART BUTTONS
+========================= */
+document.querySelectorAll(".product-card").forEach(card => {
+  const name = card.querySelector("h3").innerText;
+  const priceText = card.querySelector("span").innerText;
+  const price = Number(priceText.replace("$", ""));
+
+  const btn = card.querySelector(".add-btn");
+
+  btn.addEventListener("click", () => {
+    cart.push({ name, price });
+    updateCart();
+    showToast(`${name} added to cart`);
+  });
+});
+
+
+/* =========================
+   TOAST NOTIFICATION
+========================= */
+const toast = document.createElement("div");
+toast.style.position = "fixed";
+toast.style.bottom = "20px";
+toast.style.left = "50%";
+toast.style.transform = "translateX(-50%)";
+toast.style.background = "#222";
+toast.style.color = "#fff";
+toast.style.padding = "12px 20px";
+toast.style.borderRadius = "999px";
+toast.style.opacity = "0";
+toast.style.transition = "0.3s";
+toast.style.zIndex = "1000";
+
+document.body.appendChild(toast);
+
+function showToast(message) {
+  toast.innerText = message;
+  toast.style.opacity = "1";
+
+  setTimeout(() => {
+    toast.style.opacity = "0";
+  }, 1500);
+}
+
+
+/* =========================
+   NEWSLETTER FORM
+========================= */
+const newsletterForm = document.querySelector(".newsletter-form");
+
+if (newsletterForm) {
+  newsletterForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const input = newsletterForm.querySelector("input");
+    const email = input.value.trim();
+
+    if (!validateEmail(email)) {
+      showToast("Please enter a valid email");
+      return;
+    }
+
+    showToast("Subscribed successfully!");
+    input.value = "";
+  });
+}
+
+/* Simple email validation */
+function validateEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+</script>
+
+</body>
+</html>
