@@ -1,4 +1,4 @@
-# LUXECart Ecommerce Landing Page
+# LUXECart E-commerce
 
 LUXECart is a modern ecommerce landing page built with HTML, CSS, and JavaScript. The project features a premium glassmorphism inspired design with responsive layouts, smooth animations, and interactive shopping functionality.
 
