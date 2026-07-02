@@ -4,7 +4,11 @@
 LUXECart is a single-page, highly sophisticated e-commerce landing page designed with a modern **Glassmorphism** aesthetic. It showcases a premium user interface featuring smooth mesh gradient animations, floating visual layers, dynamic glass cards, and a fully responsive layout tailored for luxury product showcases.
 
 ---
+## Live Link
+Visit : https://omar-webcloud.github.io/LuxeCart/
 
+
+---
 ## Features
 
 * **Glassmorphism Design:** Deep visual layering utilizing structural `backdrop-filter: blur()`, subtle semi-transparent borders, and deep ambient drop shadows.
